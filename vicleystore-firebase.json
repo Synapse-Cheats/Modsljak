@@ -1,0 +1,15 @@
+{
+  "proyectos": {
+    "vicley_store": {
+      "nombre": "VicleyStore",
+      "cliente": "Victor",
+      "url": "https://synapse-cheats.github.io/VicleyStore",
+      "activo": true,
+      "pagado": true,
+      "expira": "2026-12-31",
+      "password": "vicley2026",
+      "mantenimiento": false,
+      "clics_compra": 0
+    }
+  }
+}
