@@ -28,13 +28,18 @@
 
   // ── Verificación principal ─────────────────────────────────
   function verificar() {
-    // Leer proyecto Y config/ia al mismo tiempo
     Promise.all([
-      fetch(DB_PROY + '.json?t=' + Date.now()).then(r => r.json()),
-      fetch(DB_IA   + '.json?t=' + Date.now()).then(r => r.json())
+      fetch(DB_PROY + '.json?t=' + Date.now()).then(r => { if (!r.ok) throw new Error('http_'+r.status); return r.json(); }),
+      fetch(DB_IA   + '.json?t=' + Date.now()).then(r => r.json()).catch(() => ({}))
     ])
     .then(([proy, ia]) => {
-      if (!proy) throw new Error('no encontrado');
+      // Si Firebase respondió pero el proyecto no existe → reintentar sin usar caché
+      if (proy === null) {
+        console.warn('[Synapse] Proyecto "' + PROYECTO_ID + '" no encontrado en Firebase. Reintentando en 30s...');
+        setTimeout(verificar, 30000);
+        return;
+      }
+      // Guardar caché solo cuando el dato es real
       try {
         localStorage.setItem('sl_' + PROYECTO_ID,
           JSON.stringify({ proy, ia, ts: Date.now() }));
@@ -42,7 +47,7 @@
       procesar(proy, ia || {});
     })
     .catch(() => {
-      // Intentar caché local
+      // Error de red real — intentar caché local (máx 30 min)
       try {
         const c = localStorage.getItem('sl_' + PROYECTO_ID);
         if (c) {
@@ -53,7 +58,7 @@
           }
         }
       } catch(e) {}
-      // Sin caché: reintentar
+      // Sin caché válida: reintentar en 30s
       setTimeout(verificar, 30000);
     });
   }

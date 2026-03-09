@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bienvenido a MODSLJAK</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --neon-purple:#bd00ff;--neon-pink:#ff006e;--neon-cyan:#00f5ff;
+  --neon-orange:#ff6b00;--neon-green:#39ff14;--dark-bg:#0a0a0a;--card-bg:#1a1a2e;
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark-bg);color:#fff;overflow-x:hidden;line-height:1.6}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,245,255,.15);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-size:1.3rem;font-weight:800;letter-spacing:3px;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:24px}
+.nav-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.9rem;font-weight:500;transition:.2s}
+.nav-links a:hover{color:var(--neon-cyan)}
+@media(max-width:600px){.nav-links{gap:14px}.nav-links a{font-size:.78rem}}
+
+/* HERO */
+.hero{text-align:center;padding:80px 20px 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(0,245,255,.08),transparent 70%)}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:20px;background:rgba(0,245,255,.08);border:1px solid rgba(0,245,255,.2);font-size:.8rem;color:var(--neon-cyan);font-weight:600;letter-spacing:1px;margin-bottom:24px}
+.hero h1{font-size:clamp(2rem,6vw,3.8rem);font-weight:800;line-height:1.1;margin-bottom:16px;background:linear-gradient(135deg,#fff,var(--neon-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.05rem;color:rgba(255,255,255,.6);max-width:520px;margin:0 auto 40px}
+.hero-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 36px;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));border:none;border-radius:12px;color:#000;font-size:1rem;font-weight:800;cursor:pointer;text-decoration:none;transition:.2s;letter-spacing:1px}
+.hero-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,245,255,.3)}
+
+/* STATS */
+.stats{display:flex;justify-content:center;gap:40px;padding:40px 20px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-val{font-size:2rem;font-weight:800;color:var(--neon-cyan);font-variant-numeric:tabular-nums}
+.stat-label{font-size:.8rem;color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase;margin-top:4px}
+
+/* PRODUCTOS */
+.section{padding:60px 20px;max-width:1100px;margin:0 auto}
+.section-title{text-align:center;font-size:1.8rem;font-weight:800;margin-bottom:10px}
+.section-sub{text-align:center;color:rgba(255,255,255,.5);font-size:.95rem;margin-bottom:48px}
+
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+
+.product-card{background:var(--card-bg);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:32px;text-align:center;transition:.25s;position:relative;overflow:hidden;text-decoration:none;color:#fff;display:block}
+.product-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;transition:.3s}
+.card-android::after{background:linear-gradient(90deg,var(--neon-green),var(--neon-cyan))}
+.card-pc::after{background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple))}
+.card-ios::after{background:linear-gradient(90deg,var(--neon-orange),var(--neon-pink))}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.5);border-color:rgba(255,255,255,.15)}
+.product-icon{font-size:3.5rem;margin-bottom:16px;display:block}
+.product-name{font-size:1.3rem;font-weight:800;margin-bottom:10px}
+.product-desc{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:20px}
+.product-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;border-radius:10px;font-size:.88rem;font-weight:700;cursor:pointer;transition:.15s;text-decoration:none}
+.btn-android{background:rgba(57,255,20,.12);border:1px solid rgba(57,255,20,.3);color:var(--neon-green)}
+.btn-pc{background:rgba(0,245,255,.12);border:1px solid rgba(0,245,255,.3);color:var(--neon-cyan)}
+.btn-ios{background:rgba(255,107,0,.12);border:1px solid rgba(255,107,0,.3);color:var(--neon-orange)}
+.product-btn:hover{filter:brightness(1.2);transform:translateY(-1px)}
+
+/* FEATURES */
+.features{padding:60px 20px;background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
+.features-inner{max-width:1000px;margin:0 auto}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:40px}
+.feature-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:24px;text-align:center}
+.feature-icon{font-size:2rem;margin-bottom:12px}
+.feature-title{font-size:.95rem;font-weight:700;margin-bottom:8px}
+.feature-desc{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.6}
+
+/* CONTACTO */
+.contact-section{padding:80px 20px;text-align:center;max-width:600px;margin:0 auto}
+.contact-card{background:linear-gradient(135deg,rgba(0,245,255,.06),rgba(189,0,255,.06));border:1px solid rgba(0,245,255,.15);border-radius:24px;padding:48px 36px}
+.contact-title{font-size:1.5rem;font-weight:800;margin-bottom:10px}
+.contact-sub{color:rgba(255,255,255,.5);font-size:.92rem;margin-bottom:28px}
+.contact-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:linear-gradient(135deg,#25d366,#128c7e);border:none;border-radius:12px;color:#fff;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;transition:.2s}
+.contact-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(37,211,102,.3)}
+
+/* FOOTER */
+footer{text-align:center;padding:28px 20px;border-top:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.3);font-size:.82rem}
+footer a{color:rgba(255,255,255,.5);text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">⭐ MODSLJAK</div>
+  <div class="nav-links">
+    <a href="#inicio">🏠 Inicio</a>
+    <a href="#productos">🎮 Productos</a>
+    <a href="#features">✨ Características</a>
+    <a href="#contacto">📞 Contacto</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-badge">🔥 Premium Gaming Mods</div>
+  <h1>Lleva Tu Juego Al<br>Siguiente Nivel</h1>
+  <p>Los mods más exclusivos y poderosos para Android, PC e iPhone. Únete a miles de gamers que ya dominan con nuestras herramientas premium.</p>
+  <a href="#productos" class="hero-btn">🎮 Ver Productos</a>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-val">5000+</div><div class="stat-label">Clientes Satisfechos</div></div>
+  <div class="stat"><div class="stat-val">99.9%</div><div class="stat-label">Tasa de Éxito</div></div>
+  <div class="stat"><div class="stat-val">24/7</div><div class="stat-label">Soporte Activo</div></div>
+  <div class="stat"><div class="stat-val">100%</div><div class="stat-label">Seguro y Confiable</div></div>
+</div>
+
+<!-- PRODUCTOS -->
+<section class="section" id="productos">
+  <div class="section-title">🚀 Ventas Chams: Potencia y Exclusividad 🚀</div>
+  <div class="section-sub">¡Descubre el poder de los mods 🐲 con nuestros productos hacks de última generación 🔥!</div>
+
+  <div class="products-grid">
+
+    <a href="android.html" class="product-card card-android">
+      <span class="product-icon">📱</span>
+      <div class="product-name">Android Mods</div>
+      <div class="product-desc">¡Tenemos todo lo que necesitas para llevar tu experiencia al siguiente nivel! 🔥 Mods exclusivos y optimizados para dispositivos Android. Free Fire, 8 Ball Pool y más. ¡No te quedes atrás, enciende tu juego con nosotros y domina la partida! 🍀</div>
+      <span class="product-btn btn-android">🚀 Explorar Android</span>
+    </a>
+
+    <a href="pc.html" class="product-card card-pc">
+      <span class="product-icon">💻</span>
+      <div class="product-name">PC Tools</div>
+      <div class="product-desc">¡Tenemos todo lo que necesitas para llevar tu experiencia al siguiente nivel! 🔥 Herramientas profesionales y potentes para llevar tu gaming en PC al máximo. ¡No te quedes atrás, enciende tu juego con nosotros y domina la partida! 🍀</div>
+      <span class="product-btn btn-pc">⚡ Ver PC Tools</span>
+    </a>
+
+    <a href="iphone.html" class="product-card card-ios">
+      <span class="product-icon">🍎</span>
+      <div class="product-name">iOS Premium</div>
+      <div class="product-desc">¡Tenemos todo lo que necesitas para llevar tu experiencia al siguiente nivel! 🔥 Soluciones exclusivas y seguras para dispositivos iPhone. Calidad premium garantizada. ¡No te quedes atrás, enciende tu juego con nosotros y domina la partida! 🍀</div>
+      <span class="product-btn btn-ios">🔥 Ver iOS Mods</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="features-inner">
+    <div class="section-title">¿Por Qué Elegirnos?</div>
+    <div class="section-sub">La mejor experiencia en gaming mods</div>
+    <div class="features-grid">
+      <div class="feature-item"><div class="feature-icon">🔒</div><div class="feature-title">100% Seguro</div><div class="feature-desc">Todos nuestros productos son probados y certificados. Cero riesgos para tu cuenta.</div></div>
+      <div class="feature-item"><div class="feature-icon">⚡</div><div class="feature-title">Actualizaciones</div><div class="feature-desc">Mantenemos nuestros mods siempre actualizados con las últimas versiones del juego.</div></div>
+      <div class="feature-item"><div class="feature-icon">💎</div><div class="feature-title">Calidad Premium</div><div class="feature-desc">Productos de máxima calidad probados por miles de usuarios satisfechos.</div></div>
+      <div class="feature-item"><div class="feature-icon">🎯</div><div class="feature-title">Precisión Total</div><div class="feature-desc">Ventaja competitiva real con herramientas profesionales de última generación.</div></div>
+      <div class="feature-item"><div class="feature-icon">🚀</div><div class="feature-title">Rendimiento</div><div class="feature-desc">Optimizados para máximo rendimiento sin afectar tu dispositivo.</div></div>
+      <div class="feature-item"><div class="feature-icon">💬</div><div class="feature-title">Soporte 24/7</div><div class="feature-desc">Asistencia técnica disponible en cualquier momento que lo necesites.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<div id="contacto" style="padding:60px 20px">
+  <div class="contact-section" style="padding:0;margin:0 auto">
+    <div class="contact-card">
+      <div style="font-size:2.5rem;margin-bottom:16px">🌐</div>
+      <div class="contact-title">¿Necesitas una Página Web Profesional?</div>
+      <div class="contact-sub">Contacta con Alexis para crear tu presencia digital profesional. Diseños modernos, responsive y optimizados.</div>
+      <a href="https://wa.me/5950985747341?text=Hola%2C%20me%20interesa%20crear%20una%20p%C3%A1gina%20web%20profesional" target="_blank" class="contact-btn">
+        📱 Contactar a Alexis
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2024 MODSLJAK. Todos los derechos reservados. | Sitio web by <a href="#">Alexis</a></p>
+</footer>
+
+<!-- 🔒 SYNAPSE Tracker: licencia + control panel -->
+<script>var SYNAPSE_PROYECTO_ID = 'modsljak';</script>
+<script src="tracker-modsljak.js"></script>
+
+</body>
+</html>
