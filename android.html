@@ -239,6 +239,78 @@
     @media(max-width:480px) {
       .plans-grid { grid-template-columns:1fr; }
     }
+
+    /* ─── PATO TEAM — variantes de color ─── */
+    .pato-verde  { --pato-color: #22c55e; --pato-dim: rgba(34,197,94,0.10); --pato-border: rgba(34,197,94,0.25); }
+    .pato-amarillo { --pato-color: #facc15; --pato-dim: rgba(250,204,21,0.10); --pato-border: rgba(250,204,21,0.25); }
+    .pato-azul   { --pato-color: #38bdf8; --pato-dim: rgba(56,189,248,0.10); --pato-border: rgba(56,189,248,0.25); }
+
+    .pato-block {
+      background: var(--card);
+      border: 1px solid var(--pato-border);
+      border-radius: 20px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .pato-block:hover {
+      border-color: var(--pato-color);
+      box-shadow: 0 0 30px var(--pato-dim);
+    }
+    .pato-header {
+      padding: 2rem 2.5rem;
+      border-bottom: 1px solid var(--pato-border);
+      display: flex; align-items: flex-start; gap: 1.2rem;
+      background: var(--pato-dim);
+    }
+    .pato-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: var(--pato-dim);
+      border: 1px solid var(--pato-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; flex-shrink: 0;
+    }
+    .pato-name {
+      font-family: var(--font-head);
+      font-size: 1.6rem; font-weight: 700; margin-bottom: 0.3rem;
+      color: var(--pato-color);
+    }
+    .pato-desc { font-size: 0.875rem; color: var(--muted); }
+    .pato-color-dot {
+      display: inline-block; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--pato-color);
+      margin-right: 6px; vertical-align: middle;
+      box-shadow: 0 0 6px var(--pato-color);
+    }
+    .pato-plan {
+      padding: 2rem;
+      border-right: 1px solid var(--pato-border);
+      border-bottom: 1px solid var(--pato-border);
+      transition: background 0.2s;
+      position: relative;
+    }
+    .pato-plan:last-child { border-right: none; }
+    .pato-plan:hover { background: var(--pato-dim); }
+    .pato-plan .plan-price { color: var(--pato-color); }
+    .pato-btn {
+      width: 100%;
+      background: var(--pato-color);
+      color: #000;
+      border: none; border-radius: 8px;
+      padding: 0.75rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem; font-weight: 700;
+      cursor: pointer; transition: all 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+    }
+    .pato-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .pato-badge-solo {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--pato-dim); border: 1px solid var(--pato-border);
+      color: var(--pato-color); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 0.3rem 0.9rem; border-radius: 50px; margin-top: 0.5rem;
+    }
   </style>
 </head>
 <body>
@@ -382,6 +454,81 @@
         <div class="plan-detail">Un mes completo HG</div>
         <div class="plan-price"><sup>$</sup>20</div>
         <button class="buy-btn" onclick="comprar('HG Cheats','30 Días','20.00')">Comprar →</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════
+       PATO TEAM — PRODUCTOS
+  ════════════════════════════════ -->
+  <div class="section-divider reveal">Pato Team</div>
+
+  <!-- PATO TEAM VERDE -->
+  <div class="pato-block pato-verde reveal">
+    <div class="pato-header">
+      <div class="pato-icon">🦆</div>
+      <div class="pato-meta">
+        <div class="pato-name"><span class="pato-color-dot"></span>Pato Team Verde</div>
+        <div class="pato-desc">Mod exclusivo Pato Team — edición verde premium para Free Fire</div>
+        <div class="pato-badge-solo">Plan único disponible</div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="pato-plan" style="border-right:none;">
+        <div class="plan-badge" style="color:var(--pato-color)">Mejor Valor</div>
+        <div class="plan-duration">30 Días</div>
+        <div class="plan-detail">Un mes completo — máximo rendimiento</div>
+        <div class="plan-price" style="color:#22c55e"><sup>$</sup>20</div>
+        <button class="pato-btn" style="background:#22c55e" onclick="comprar('Pato Team Verde','30 Días','20.00')">Comprar → 🦆</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PATO TEAM AMARILLO -->
+  <div class="pato-block pato-amarillo reveal">
+    <div class="pato-header">
+      <div class="pato-icon">🦆</div>
+      <div class="pato-meta">
+        <div class="pato-name"><span class="pato-color-dot"></span>Pato Team Amarillo</div>
+        <div class="pato-desc">Mod exclusivo Pato Team — edición amarillo premium para Free Fire</div>
+        <div class="pato-badge-solo">Plan único disponible</div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="pato-plan" style="border-right:none;">
+        <div class="plan-badge" style="color:var(--pato-color)">Mejor Valor</div>
+        <div class="plan-duration">30 Días</div>
+        <div class="plan-detail">Un mes completo — máximo rendimiento</div>
+        <div class="plan-price" style="color:#facc15"><sup>$</sup>20</div>
+        <button class="pato-btn" style="background:#facc15" onclick="comprar('Pato Team Amarillo','30 Días','20.00')">Comprar → 🦆</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PATO TEAM AZUL -->
+  <div class="pato-block pato-azul reveal">
+    <div class="pato-header">
+      <div class="pato-icon">🦆</div>
+      <div class="pato-meta">
+        <div class="pato-name"><span class="pato-color-dot"></span>Pato Team Azul</div>
+        <div class="pato-desc">Mod exclusivo Pato Team — edición azul premium para Free Fire</div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="pato-plan">
+        <div class="plan-badge" style="color:var(--pato-color)">7 Días</div>
+        <div class="plan-duration">Una Semana</div>
+        <div class="plan-detail">Siete días de ventaja total</div>
+        <div class="plan-price" style="color:#38bdf8"><sup>$</sup>8</div>
+        <button class="pato-btn" style="background:#38bdf8" onclick="comprar('Pato Team Azul','7 Días','8.00')">Comprar → 🦆</button>
+      </div>
+      <div class="pato-plan" style="border-right:none;">
+        <div class="plan-badge" style="color:var(--pato-color)">15 Días</div>
+        <div class="plan-duration">Dos Semanas</div>
+        <div class="plan-detail">Quince días de dominio</div>
+        <div class="plan-price" style="color:#38bdf8"><sup>$</sup>16</div>
+        <button class="pato-btn" style="background:#38bdf8" onclick="comprar('Pato Team Azul','15 Días','16.00')">Comprar → 🦆</button>
       </div>
     </div>
   </div>
