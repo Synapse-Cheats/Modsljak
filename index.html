@@ -544,37 +544,51 @@
   font-family: 'Segoe UI', sans-serif;
 ">
   <div style="
-    font-size: 2.2rem;
-    font-weight: 900;
-    color: #39d353;
-    letter-spacing: 2px;
-    text-align: center;
-    text-shadow: 0 0 20px #39d353aa;
-  ">🎮 MODSLJAK</div>
+    background: rgba(0,0,0,0.75);
+    border: 1px solid #39d35355;
+    border-radius: 24px;
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    backdrop-filter: blur(4px);
+    max-width: 300px;
+    width: 85%;
+  ">
+    <div style="
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #39d353;
+      letter-spacing: 2px;
+      text-align: center;
+      text-shadow: 0 0 16px #39d353;
+    ">🎮 MODSLJAK</div>
 
-  <div style="
-    font-size: 0.95rem;
-    color: #aaa;
-    text-align: center;
-    max-width: 260px;
-    line-height: 1.5;
-  ">Los mejores mods para Free Fire</div>
+    <div style="
+      font-size: 0.95rem;
+      color: #eee;
+      text-align: center;
+      line-height: 1.5;
+    ">Los mejores mods para Free Fire</div>
 
-  <button onclick="entrarPagina()" style="
-    background: linear-gradient(135deg, #39d353, #22a03a);
-    color: #000;
-    font-size: 1.05rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    padding: 16px 42px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 0 30px #39d35388;
-    animation: pulseBtn 1.8s ease-in-out infinite;
-  ">▶ ENTRAR A LA PÁGINA</button>
+    <button onclick="entrarPagina()" style="
+      background: linear-gradient(135deg, #39d353, #22a03a);
+      color: #000;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 16px 36px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 30px #39d35388;
+      animation: pulseBtn 1.8s ease-in-out infinite;
+      width: 100%;
+    ">▶ ENTRAR A LA PÁGINA</button>
 
-  <div style="font-size: 0.75rem; color: #555;">Activa el volumen 🔊</div>
+    <div style="font-size: 0.75rem; color: #aaa;">Activa el volumen 🔊</div>
+  </div>
 </div>
 
 <audio id="bgAudio" src="modsljak.mp3" loop></audio>
@@ -597,7 +611,7 @@ function entrarPagina() {
   setTimeout(function() { splash.style.display = 'none'; }, 700);
 
   // Play audio
-  audio.volume = 0.6;
+  audio.volume = 0.25;
   audio.play().catch(function(){});
 }
 </script>
