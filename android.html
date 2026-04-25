@@ -435,5 +435,92 @@
   }
 })();
 </script>
+<!-- ══════════════════════════════════════════
+     CONTROL REMOTO FIREBASE — MODSLJAK
+     Lee config/ia en tiempo real y muestra
+     overlays según lo que active el admin
+══════════════════════════════════════════ -->
+<div id="fb-overlay" style="
+  display:none;
+  position:fixed;inset:0;z-index:99999;
+  background:rgba(0,0,0,0.93);
+  flex-direction:column;align-items:center;justify-content:center;
+  gap:18px;font-family:'Segoe UI',sans-serif;text-align:center;padding:30px;
+">
+  <div id="fb-overlay-icon" style="font-size:3.5rem"></div>
+  <div id="fb-overlay-title" style="font-size:1.5rem;font-weight:900;color:#fff"></div>
+  <div id="fb-overlay-msg" style="font-size:0.95rem;color:#bbb;max-width:320px;line-height:1.6"></div>
+</div>
+
+<!-- Banner mensaje global (no bloquea, solo avisa) -->
+<div id="fb-banner" style="
+  display:none;
+  position:fixed;top:0;left:0;right:0;z-index:9998;
+  background:linear-gradient(90deg,#f59e0b,#d97706);
+  color:#000;font-weight:700;font-size:0.85rem;
+  padding:10px 20px;text-align:center;
+">
+  <span id="fb-banner-msg"></span>
+</div>
+
+<script type="module">
+import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyByS186sUBK8b4SZM2lNkU_O2QzIrDNp3Y",
+  authDomain: "synapse-cheats.firebaseapp.com",
+  databaseURL: "https://synapse-cheats-default-rtdb.firebaseio.com",
+  projectId: "synapse-cheats",
+  storageBucket: "synapse-cheats.firebasestorage.app",
+  messagingSenderId: "115647662390",
+  appId: "1:115647662390:web:b82e801b60f216e6864b97"
+};
+
+try {
+  const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+  const db  = getDatabase(app);
+
+  onValue(ref(db, 'config/ia'), (snap) => {
+    const cfg = snap.val() || {};
+    const overlay = document.getElementById('fb-overlay');
+    const banner  = document.getElementById('fb-banner');
+
+    // ── Determinar qué mostrar ──────────────────────
+    if (cfg.activa === false) {
+      mostrarOverlay('🔴', 'Sitio Desactivado',
+        cfg.mensaje || 'Este sitio ha sido desactivado temporalmente.\nContáctanos por WhatsApp.');
+    } else if (cfg.mantenimiento) {
+      mostrarOverlay('🔧', 'En Mantenimiento',
+        cfg.mensaje || 'Estamos realizando mejoras.\nVolvemos pronto, gracias por tu paciencia.');
+    } else if (cfg.faltaPago) {
+      mostrarOverlay('💳', 'Servicio Suspendido',
+        cfg.mensaje || 'El servicio ha sido suspendido por falta de pago.\nContacta al administrador para regularizar.');
+    } else {
+      // Todo OK — quitar overlay
+      overlay.style.display = 'none';
+
+      // Mostrar banner si hay mensaje pero sin bloqueo
+      if (cfg.mensaje && cfg.mensaje.trim()) {
+        document.getElementById('fb-banner-msg').textContent = '📢 ' + cfg.mensaje;
+        banner.style.display = 'block';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+  });
+} catch(e) {
+  console.warn('Firebase overlay error:', e);
+}
+
+function mostrarOverlay(icon, titulo, msg) {
+  document.getElementById('fb-overlay-icon').textContent  = icon;
+  document.getElementById('fb-overlay-title').textContent = titulo;
+  document.getElementById('fb-overlay-msg').textContent   = msg;
+  document.getElementById('fb-overlay').style.display     = 'flex';
+  document.getElementById('fb-banner').style.display      = 'none';
+}
+</script>
+
 </body>
 </html>
