@@ -173,5 +173,17 @@
   const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.05,rootMargin:'0px 0px -30px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
+
+<!-- AUDIO PERSISTENTE -->
+<audio id="bgAudio" src="modsljak.mp3" loop></audio>
+<script>
+(function(){
+  if(localStorage.getItem('sc_audio') === '1'){
+    var a = document.getElementById('bgAudio');
+    a.volume = 0.25;
+    a.play().catch(function(){});
+  }
+})();
+</script>
 </body>
 </html>

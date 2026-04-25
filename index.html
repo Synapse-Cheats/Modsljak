@@ -611,6 +611,7 @@ function entrarPagina() {
   setTimeout(function() { splash.style.display = 'none'; }, 700);
 
   // Play audio
+  localStorage.setItem('sc_audio', '1');
   audio.volume = 0.25;
   audio.play().catch(function(){});
 }
