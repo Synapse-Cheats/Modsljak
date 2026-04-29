@@ -311,6 +311,77 @@
       letter-spacing: 1px; text-transform: uppercase;
       padding: 0.3rem 0.9rem; border-radius: 50px; margin-top: 0.5rem;
     }
+
+    /* ─── DRIP CLIENT ─── */
+    :root {
+      --drip:       #a855f7;
+      --drip-dim:   rgba(168,85,247,0.10);
+      --drip-border:rgba(168,85,247,0.28);
+      --drip-glow:  rgba(168,85,247,0.18);
+    }
+
+    .drip-block {
+      background: var(--card);
+      border: 1px solid var(--drip-border);
+      border-radius: 20px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .drip-block:hover {
+      border-color: var(--drip);
+      box-shadow: 0 0 36px var(--drip-glow);
+    }
+    .drip-header {
+      padding: 2rem 2.5rem;
+      border-bottom: 1px solid var(--drip-border);
+      display: flex; align-items: flex-start; gap: 1.2rem;
+      background: var(--drip-dim);
+    }
+    .drip-icon {
+      width: 56px; height: 56px; border-radius: 16px;
+      background: var(--drip-dim);
+      border: 1px solid var(--drip-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; flex-shrink: 0;
+      box-shadow: 0 0 16px var(--drip-glow);
+    }
+    .drip-name {
+      font-family: var(--font-head);
+      font-size: 1.7rem; font-weight: 700; margin-bottom: 0.3rem;
+      color: var(--drip);
+      text-shadow: 0 0 20px rgba(168,85,247,0.35);
+    }
+    .drip-desc { font-size: 0.875rem; color: var(--muted); }
+    .drip-color-dot {
+      display: inline-block; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--drip);
+      margin-right: 6px; vertical-align: middle;
+      box-shadow: 0 0 8px var(--drip);
+    }
+    .drip-plan {
+      padding: 2rem;
+      border-right: 1px solid var(--drip-border);
+      border-bottom: 1px solid var(--drip-border);
+      transition: background 0.2s;
+      position: relative;
+    }
+    .drip-plan:last-child { border-right: none; }
+    .drip-plan:hover { background: var(--drip-dim); }
+    .drip-plan .plan-price { color: var(--drip); }
+    .drip-btn {
+      width: 100%;
+      background: var(--drip);
+      color: #fff;
+      border: none; border-radius: 8px;
+      padding: 0.75rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem; font-weight: 700;
+      cursor: pointer; transition: all 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+      letter-spacing: 0.5px;
+    }
+    .drip-btn:hover { opacity: 0.85; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(168,85,247,0.4); }
   </style>
 </head>
 <body>
@@ -340,6 +411,78 @@
 </div>
 
 <div class="container">
+
+  <!-- ════════════════════════════════
+       DRIP CLIENT — PRIMER LUGAR
+  ════════════════════════════════ -->
+  <div class="section-divider reveal">DRIP Client</div>
+
+  <div class="drip-block reveal">
+    <div class="drip-header">
+      <div class="drip-icon">🪣</div>
+      <div class="drip-meta">
+        <div class="drip-name"><span class="drip-color-dot"></span>DRIP Client</div>
+        <div class="drip-desc">Mod exclusivo DRIP — domina el campo con estilo</div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="drip-plan">
+        <div class="plan-badge" style="color:var(--drip)">Diario</div>
+        <div class="plan-duration">1 Día</div>
+        <div class="plan-detail">Acceso completo 24 horas</div>
+        <div class="plan-price" style="color:var(--drip)"><sup>$</sup>3</div>
+        <button class="drip-btn" onclick="comprar('DRIP Client','1 Día','3.00')">Comprar →</button>
+      </div>
+      <div class="drip-plan">
+        <div class="plan-badge" style="color:var(--drip)">Semanal</div>
+        <div class="plan-duration">Una Semana</div>
+        <div class="plan-detail">7 días de ventaja total</div>
+        <div class="plan-price" style="color:var(--drip)"><sup>$</sup>8</div>
+        <button class="drip-btn" onclick="comprar('DRIP Client','7 Días','8.00')">Comprar →</button>
+      </div>
+      <div class="drip-plan" style="border-right:none;">
+        <div class="plan-badge" style="color:var(--drip)">Mejor Valor</div>
+        <div class="plan-duration">30 Días</div>
+        <div class="plan-detail">Un mes completo de dominio</div>
+        <div class="plan-price" style="color:var(--drip)"><sup>$</sup>20</div>
+        <button class="drip-btn" onclick="comprar('DRIP Client','30 Días','20.00')">Comprar →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HG CHEATS -->
+  <div class="product-block reveal">
+    <div class="product-block-header">
+      <div class="product-emoji">🦁</div>
+      <div class="product-meta">
+        <div class="product-name">HG Cheats</div>
+        <div class="product-desc">Hack premium para Free Fire — el más completo del mercado</div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-badge">Prueba</div>
+        <div class="plan-duration">1 Día</div>
+        <div class="plan-detail">Acceso premium 24 horas</div>
+        <div class="plan-price"><sup>$</sup>3</div>
+        <button class="buy-btn" onclick="comprar('HG Cheats','1 Día','3.00')">Comprar →</button>
+      </div>
+      <div class="plan-card plan-popular">
+        <div class="plan-badge">10 Días</div>
+        <div class="plan-duration">Diez Días</div>
+        <div class="plan-detail">Diez días premium</div>
+        <div class="plan-price"><sup>$</sup>7</div>
+        <button class="buy-btn" onclick="comprar('HG Cheats','10 Días','7.00')">Comprar →</button>
+      </div>
+      <div class="plan-card">
+        <div class="plan-badge">Mejor Valor</div>
+        <div class="plan-duration">30 Días</div>
+        <div class="plan-detail">Un mes completo HG</div>
+        <div class="plan-price"><sup>$</sup>20</div>
+        <button class="buy-btn" onclick="comprar('HG Cheats','30 Días','20.00')">Comprar →</button>
+      </div>
+    </div>
+  </div>
 
   <!-- CUBAN MODS -->
   <div class="product-block reveal">
@@ -423,41 +566,6 @@
       </div>
     </div>
   </div>
-
-  <!-- HG CHEATS -->
-  <div class="product-block reveal">
-    <div class="product-block-header">
-      <div class="product-emoji">💎</div>
-      <div class="product-meta">
-        <div class="product-name">HG Cheats</div>
-        <div class="product-desc">Hack premium para Free Fire — el más completo del mercado</div>
-      </div>
-    </div>
-    <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-badge">Prueba</div>
-        <div class="plan-duration">1 Día</div>
-        <div class="plan-detail">Acceso premium 24 horas</div>
-        <div class="plan-price"><sup>$</sup>3</div>
-        <button class="buy-btn" onclick="comprar('HG Cheats','1 Día','3.00')">Comprar →</button>
-      </div>
-      <div class="plan-card plan-popular">
-        <div class="plan-badge">10 Días</div>
-        <div class="plan-duration">Diez Días</div>
-        <div class="plan-detail">Diez días premium</div>
-        <div class="plan-price"><sup>$</sup>7</div>
-        <button class="buy-btn" onclick="comprar('HG Cheats','10 Días','7.00')">Comprar →</button>
-      </div>
-      <div class="plan-card">
-        <div class="plan-badge">Mejor Valor</div>
-        <div class="plan-duration">30 Días</div>
-        <div class="plan-detail">Un mes completo HG</div>
-        <div class="plan-price"><sup>$</sup>20</div>
-        <button class="buy-btn" onclick="comprar('HG Cheats','30 Días','20.00')">Comprar →</button>
-      </div>
-    </div>
-  </div>
-
 
   <!-- ════════════════════════════════
        PATO TEAM — PRODUCTOS
